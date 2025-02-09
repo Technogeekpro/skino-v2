@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { 
@@ -40,22 +40,18 @@ interface PaymentDetails {
   };
 }
 
-export default function PaymentStatus() {
+function PaymentStatusContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [paymentDetails, setPaymentDetails] = useState<PaymentDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // In a real app, you would fetch payment details from your backend
-    // For demo, we'll use search params and mock data
-    const status = searchParams.get('status') || 'success';
+    // For demo, we'll use a mock success status
     const mockPaymentDetails: PaymentDetails = {
-      status: status as 'success' | 'failure',
+      status: 'success',
       orderId: 'ORD' + Math.random().toString(36).substr(2, 9).toUpperCase(),
       amount: 2499,
-      paymentId: status === 'success' ? 'pay_' + Math.random().toString(36).substr(2, 9) : undefined,
-      errorMessage: status === 'failure' ? 'Transaction declined by bank' : undefined,
+      paymentId: 'pay_' + Math.random().toString(36).substr(2, 9),
       timestamp: new Date().toISOString(),
       items: [
         {
@@ -78,7 +74,7 @@ export default function PaymentStatus() {
 
     setPaymentDetails(mockPaymentDetails);
     setIsLoading(false);
-  }, [searchParams]);
+  }, []);
 
   const handleBack = () => {
     router.push('/');
@@ -281,5 +277,13 @@ export default function PaymentStatus() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PaymentStatus() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PaymentStatusContent />
+    </Suspense>
   );
 } 

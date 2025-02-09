@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, Suspense } from 'react';
+import { useRouter } from 'next/navigation';
 import { ChevronLeft, Plus, MapPin, Edit2, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,9 +35,8 @@ const DEMO_ADDRESSES = [
   }
 ];
 
-export default function AddressPage() {
+function AddressPageContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [addresses, setAddresses] = useState(DEMO_ADDRESSES);
   const [showNewAddress, setShowNewAddress] = useState(false);
   const [newAddress, setNewAddress] = useState({
@@ -367,5 +366,13 @@ export default function AddressPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function AddressPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddressPageContent />
+    </Suspense>
   );
 } 
