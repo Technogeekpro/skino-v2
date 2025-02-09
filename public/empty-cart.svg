@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shopping Cart -->
+  <path d="M40 40h20l20 90h70" stroke="#E5E7EB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M80 90h70l10-40H70" stroke="#E5E7EB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Wheels -->
+  <circle cx="90" cy="160" r="10" stroke="#E5E7EB" stroke-width="4"/>
+  <circle cx="150" cy="160" r="10" stroke="#E5E7EB" stroke-width="4"/>
+  
+  <!-- Sad Face -->
+  <circle cx="120" cy="90" r="30" stroke="#E5E7EB" stroke-width="4"/>
+  <path d="M110 100q10-20 20 0" stroke="#E5E7EB" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="110" cy="85" r="2" fill="#E5E7EB"/>
+  <circle cx="130" cy="85" r="2" fill="#E5E7EB"/>
+</svg> 
